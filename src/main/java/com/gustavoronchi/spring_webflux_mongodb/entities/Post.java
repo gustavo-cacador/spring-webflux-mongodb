@@ -2,6 +2,7 @@ package com.gustavoronchi.spring_webflux_mongodb.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -18,6 +19,9 @@ public class Post {
 
     private Autor autor;
 
+    @DocumentReference
+    private Usuario usuario;
+
     private List<Comentario> comentarios = new ArrayList<>();
 
     public Post() {}
@@ -28,6 +32,14 @@ public class Post {
         this.titulo = titulo;
         this.corpo = corpo;
         this.autor = autor;
+    }
+
+    public Post(String id, Instant momento, String titulo, String corpo, String autorId, String autorNome) {
+        this.id = id;
+        this.momento = momento;
+        this.titulo = titulo;
+        this.corpo = corpo;
+        this.autor = new Autor(autorId, autorNome);
     }
 
     public String getId() {
@@ -70,7 +82,28 @@ public class Post {
         this.autor = autor;
     }
 
+    public String getAutorId() {
+        return autor.getId();
+    }
+
+    public String getAutorNome() {
+        return autor.getNome();
+    }
+
     public List<Comentario> getComentarios() {
         return comentarios;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public void addComment(String CommentText, Instant dataComentario, String autorId, String autorNome) {
+        Comentario comentario = new Comentario(CommentText, dataComentario, autorId, autorNome);
+        comentarios.add(comentario);
     }
 }

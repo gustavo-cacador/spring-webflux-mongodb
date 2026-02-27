@@ -17,6 +17,12 @@ public class Comentario {
         this.autor = autor;
     }
 
+    public Comentario(String commentText, Instant dataComentario, String autorId, String autorNome) {
+        this.texto = commentText;
+        this.momento = dataComentario;
+        this.autor = new Autor(autorId, autorNome);
+    }
+
     public String getTexto() {
         return texto;
     }
