@@ -41,12 +41,15 @@ public class TestConfig implements CommandLineRunner {
         alex = usuarioRepository.searchEmail("alex@gmail.com").toFuture().get();
         bob = usuarioRepository.searchEmail("bob@gmail.com").toFuture().get();
 
+        assert maria != null;
         Post post1 = new Post(null, Instant.parse("2022-11-21T18:35:24.00Z"), "Partiu viagem",
                 "Vou viajar para São Paulo. Abraços!", maria.getId(), maria.getNome());
         Post post2 = new Post(null, Instant.parse("2022-11-23T17:30:24.00Z"), "Bom dia", "Acordei feliz hoje!",
                 maria.getId(), maria.getNome());
 
+        assert alex != null;
         post1.addComment("Boa viagem mano!", Instant.parse("2022-11-21T18:52:24.00Z"), alex.getId(), alex.getNome());
+        assert bob != null;
         post1.addComment("Aproveite!", Instant.parse("2022-11-22T11:35:24.00Z"), bob.getId(), bob.getNome());
 
         post2.addComment("Tenha um ótimo dia!", Instant.parse("2022-11-23T18:35:24.00Z"), alex.getId(), alex.getNome());
