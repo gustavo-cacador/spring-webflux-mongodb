@@ -19,6 +19,7 @@ public class Post {
 
     private Autor autor;
 
+    // relacionamento entre post e usuario
     @DocumentReference
     private Usuario usuario;
 

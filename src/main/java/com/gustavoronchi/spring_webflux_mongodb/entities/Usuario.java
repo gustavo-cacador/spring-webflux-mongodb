@@ -1,11 +1,7 @@
 package com.gustavoronchi.spring_webflux_mongodb.entities;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Document(collection = "usuarios")
 public class Usuario {
@@ -15,9 +11,6 @@ public class Usuario {
     private String id;
     private String nome;
     private String email;
-
-    @DBRef(lazy = true)
-    public List<Post> postagens = new ArrayList<>();
 
     public Usuario() {}
 
@@ -49,9 +42,5 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public List<Post> getPostagens() {
-        return postagens;
     }
 }
